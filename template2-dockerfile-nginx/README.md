@@ -21,5 +21,5 @@ docker image build -t docker_nginx_ssl .
 docker run -p 80:80 -p 443:443 docker_nginx_ssl
 ```
 
-瀏覽 http://localhost/ 如果有看到 helloworld
+瀏覽 http://localhost/ 如果有看到 helloworld \
 瀏覽 https://localhost/ 會看到瀏覽器提示不安全 ( 因為是使用自簽憑證 ) 就代表成功囉！
