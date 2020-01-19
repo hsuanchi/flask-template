@@ -26,5 +26,3 @@ docker run -p 80: 8888 dockerfile_test
 連線 0.0.0.0:80 或 127.0.0.1:80 ，就可以看到 Flask Dockerized 就表示成功囉！
 
 ## template2-dockerfile-nginx
-
-詳細設定寫於：
