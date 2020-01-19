@@ -5,7 +5,8 @@
 
 ### step 1 - git clone
 ``` 
-git clone https://github.com/hsuanchi/template-dockerfile-flask.git
+git clone https://github.com/hsuanchi/template-docker-flask.git
+cd template1-dockerfile-flask
 ```
 
 ### step 2 -  將 dockerfile 打包成 image
