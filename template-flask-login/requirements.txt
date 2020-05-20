@@ -1,7 +1,6 @@
 Click==7.0
 Flask==1.1.1
 Flask-JWT-Extended==3.24.1
-Flask-Login==0.5.0
 Flask-SQLAlchemy==2.4.1
 itsdangerous==1.1.0
 Jinja2==2.11.1

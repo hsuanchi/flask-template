@@ -9,7 +9,7 @@ def create_sqlite_uri(db_name):
 
 
 class BaseConfig:  # 基本配置
-    SECRET_KEY = 'MAX IS AWESOME'
+    SECRET_KEY = os.environ.get('key')
     PERMANENT_SESSION_LIFETIME = timedelta(days=14)
 
 
