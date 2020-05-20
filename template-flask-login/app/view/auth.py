@@ -1,51 +1,72 @@
-from flask import Flask, render_template, jsonify, request, session, redirect, Blueprint
+from flask import Flask, render_template, request, session, Blueprint, make_response
+from flask_restful import Api, Resource, reqparse
+
+from marshmallow import ValidationError
 
 from ..model import user
 from .. import db
 
 auth = Blueprint('auth', __name__)
+api = Api(auth)
+
+users_schema = user.UserSchema()
 
 
-@auth.route('/signup', methods=['GET', 'POST'])
-def signup():
-    if request.method == 'POST':
-
-        email = request.form['email']
-        password = request.form['password']
-
+class Signup(Resource):
+    def post(self):
         try:
-            U = user.User(email, password)
+            # 資料驗證
+            user_data = users_schema.load(request.form, partial=True)
+            name = user_data['name']
+            password = user_data['password']
+
+            # 註冊
+            U = user.User(name, password)
             U.save_to_db()
             U.save_user_session()
 
-            return jsonify({'msg': 'registration success'}), 200
+            return {'msg': 'registration success'}, 200
+
+        except ValidationError as error:
+            return {'errors': '資料驗證失敗', 'msg': str(error)}, 400
+
         except Exception as e:
             print(e)
-            return jsonify({'msg': 'Repeat registration'}), 400
+            return {'msg': 'Repeat registration'}, 400
 
-    else:
-        return render_template('signup.html')
-
-
-@auth.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-
-        email = request.form['email']
-        password = request.form['password']
-
-        query = user.User.get_user(email)
-        if query != None and query.verify_password(password):
-            query.save_user_session()
-            return jsonify({'msg': 'ok'}), 200
-        else:
-            return jsonify({'msg': 'incorrect username or password'}), 400
-
-    else:
-        return render_template('login.html')
+    def get(self):
+        return make_response(render_template('signup.html'))
 
 
-@auth.route('/logout', methods=['POST'])
-def logout():
-    user.User.remove_user_session()
-    return jsonify({'msg': 'logout'}), 200
+class Login(Resource):
+    def post(self):
+        try:
+            # 資料驗證
+            user_data = users_schema.load(request.form)
+            name = user_data['name']
+            password = user_data['password']
+
+            # 登入
+            query = user.User.get_user(name)
+            if query != None and query.verify_password(password):
+                query.save_user_session()
+                return {'msg': 'ok'}, 200
+            else:
+                return {'msg': 'incorrect username or password'}, 400
+
+        except ValidationError as error:
+            return {'errors': '資料驗證失敗', 'msg': str(error)}, 400
+
+    def get(self):
+        return make_response(render_template('login.html'))
+
+
+class Logout(Resource):
+    def post(self):
+        user.User.remove_user_session()
+        return {'msg': 'logout'}, 200
+
+
+api.add_resource(Signup, '/signup')
+api.add_resource(Login, '/login')
+api.add_resource(Logout, '/logout')

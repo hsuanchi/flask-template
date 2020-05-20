@@ -1,7 +1,11 @@
-from .. import db
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
+
+from marshmallow import Schema, fields, pre_load, validate
+from marshmallow import ValidationError
+
 from flask import session
+from .. import db
 
 
 class User(db.Model):
@@ -49,3 +53,12 @@ class User(db.Model):
         session['username'] = ''
         session['role'] = ''
         session['uid'] = ''
+
+
+class UserSchema(Schema):
+    uid = fields.Integer(dump_only=True)
+    name = fields.String(required=True)
+    password = fields.String(required=True, validate=validate.Length(6))
+    role = fields.String()
+    insert_time = fields.DateTime()
+    update_time = fields.DateTime()
