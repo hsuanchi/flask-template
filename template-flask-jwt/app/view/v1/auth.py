@@ -18,19 +18,20 @@ users_schema = users.UserSchema()
 
 class Signup(Resource):
     def post(self):
-        # 資料驗證
         try:
+            # 資料驗證
             user_data = users_schema.load(request.json, partial=True)
             name = user_data['name']
             password = user_data['password']
-        except ValidationError as error:
-            return {'errors': '資料驗證失敗', 'msg': str(error)}, 400
 
-        # 註冊帳戶
-        try:
+            # 註冊帳戶
             U = users.User(name, password)
             U.save_to_db()
             return create_jwt(name), 200
+
+        except ValidationError as error:
+            return {'errors': '資料驗證失敗', 'msg': str(error)}, 400
+
         except Exception as e:
             print(e)
             return {'msg': '重複註冊'}, 400
@@ -38,20 +39,21 @@ class Signup(Resource):
 
 class Login(Resource):
     def post(self):
-        # 資料驗證
         try:
+            # 資料驗證
             user_data = users_schema.load(request.json)
             name = user_data['name']
             password = user_data['password']
+
+            # 登入
+            query = users.User.get_user(name=name)
+            if query != None and query.verify_password(password):
+                return create_jwt(name), 200
+            else:
+                return {'msg': '帳密錯誤'}, 400
+
         except ValidationError as error:
             return {'errors': '資料驗證失敗', 'msg': str(error)}, 400
-
-        # 登入
-        query = users.User.get_user(name=name)
-        if query != None and query.verify_password(password):
-            return create_jwt(name), 200
-        else:
-            return {'msg': '帳密錯誤'}, 400
 
 
 class JWT_refresh(Resource):
