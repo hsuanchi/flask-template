@@ -45,17 +45,6 @@ class User(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    def save_user_session(self):
-        session['username'] = self.name
-        session['role'] = self.role
-        session['uid'] = self.uid
-
-    @staticmethod
-    def remove_user_session():
-        session['username'] = ''
-        session['role'] = ''
-        session['uid'] = ''
-
 
 class UserSchema(Schema):
     uid = fields.Integer(dump_only=True)
