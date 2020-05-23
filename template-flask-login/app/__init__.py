@@ -21,10 +21,15 @@ def create_app(config_name):
 
     @app.route('/')
     def index():
-        return 'max'
+        return 'success'
+
+    @app.route('/create_all')
+    def create_db():
+        db.create_all()
+        return 'success'
 
     # 判斷權限需要 normal 以上
-    @app.route('/normal')
+    @app.route('/normal_member')
     @check_login('normal')
     def member_normal_page():
         name = session.get('username')
@@ -33,7 +38,7 @@ def create_app(config_name):
         return f'type:nornal,{name},{role},{uid}'
 
     # 判斷權限需要 admin 以上
-    @app.route('/admin')
+    @app.route('/admin_member')
     @check_login('admin')
     def member_admin_page():
         name = session.get('username')

@@ -3,13 +3,14 @@ from flask_restful import Api, Resource, reqparse
 
 from marshmallow import ValidationError
 
-from ..model import user
+from ..model.user import UserModel, UserSchema
 from .. import db
+from .abort_msg import abort_msg
 
 auth = Blueprint('auth', __name__)
 api = Api(auth)
 
-users_schema = user.UserSchema()
+users_schema = UserSchema()
 
 
 class Signup(Resource):
@@ -17,22 +18,17 @@ class Signup(Resource):
         try:
             # 資料驗證
             user_data = users_schema.load(request.form, partial=True)
-            name = user_data['name']
-            password = user_data['password']
-
             # 註冊
-            U = user.User(name, password)
-            U.save_to_db()
-            U.save_user_session()
-
+            new_user = UserModel(user_data)
+            new_user.save_db()
+            new_user.save_session()
             return {'msg': 'registration success'}, 200
 
         except ValidationError as error:
-            return {'errors': '資料驗證失敗', 'msg': str(error)}, 400
+            return {'errors': error.messages}, 400
 
         except Exception as e:
-            print(e)
-            return {'msg': 'Repeat registration'}, 400
+            return {'errors': abort_msg(e)}, 500
 
     def get(self):
         return make_response(render_template('signup.html'))
@@ -47,23 +43,26 @@ class Login(Resource):
             password = user_data['password']
 
             # 登入
-            query = user.User.get_user(name)
+            query = UserModel.get_user(name)
             if query != None and query.verify_password(password):
-                query.save_user_session()
+                query.save_session()
                 return {'msg': 'ok'}, 200
             else:
-                return {'msg': 'incorrect username or password'}, 400
+                return {'errors': 'incorrect username or password'}, 400
 
         except ValidationError as error:
-            return {'errors': '資料驗證失敗', 'msg': str(error)}, 400
+            return {'errors': error.messages}, 400
+
+        except Exception as e:
+            return {'errors': abort_msg(e)}, 500
 
     def get(self):
         return make_response(render_template('login.html'))
 
 
 class Logout(Resource):
-    def post(self):
-        user.User.remove_user_session()
+    def get(self):
+        UserModel.remove_session()
         return {'msg': 'logout'}, 200
 
 
