@@ -1,15 +1,12 @@
 aniso8601==8.0.0
 Click==7.0
 Flask==1.1.1
-Flask-JWT-Extended==3.24.1
-Flask-Login==0.5.0
 Flask-RESTful==0.3.8
 Flask-SQLAlchemy==2.4.1
 itsdangerous==1.1.0
 Jinja2==2.11.1
 MarkupSafe==1.1.1
 marshmallow==3.6.0
-PyJWT==1.7.1
 PyMySQL==0.9.3
 python-dotenv==0.13.0
 pytz==2020.1
