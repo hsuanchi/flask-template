@@ -14,15 +14,19 @@ def create_app(config_name):
 
     db.init_app(app)
 
+    from .models.users import Person
+
     @app.route('/')
     def index():
-        from .models.users import Person
+        return 'hello world'
+
+    @app.route('/create')
+    def create_db():
         db.create_all()
         return 'ok'
 
     @app.route('/max')
     def insert_max():
-        from .models.users import Person
         u = Person('Max')
         db.session.add(u)
         db.session.commit()
