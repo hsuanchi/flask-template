@@ -1,4 +1,4 @@
-## 當 Flask 遇上 Docker 系列
+# ▍當 Flask 遇上 Docker 系列
 
 ### 第一集：實作 Dockerfile 設定 Flask Server
 
@@ -22,7 +22,7 @@
 [實作 Docker-compose (Flask+Nginx+PostgreSQL) | Max行銷誌](https://www.maxlist.xyz/2020/06/14/flask-docker-compose/)
 
 
-## Flask 使用者驗證 Http authentication 篇
+# ▍Flask 使用者驗證 Http authentication 篇
 
 ### Session-based Authentication
 完整程式資料夾位置：[template-flask-login](https://github.com/hsuanchi/flask-template/tree/master/template-flask-login)
@@ -30,7 +30,7 @@
 文章詳細教學寫於：
 [[Flask教學] Flask 實作 Session-base login 登入驗證](https://www.maxlist.xyz/2020/05/24/flask-session-base-login/)
 
-### token-based Authentication
+### Token-based Authentication
 完整程式資料夾位置：[template-flask-jwt](https://github.com/hsuanchi/flask-template/tree/master/template-flask-jwt)
 
 文章詳細教學寫於：
