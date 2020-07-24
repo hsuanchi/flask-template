@@ -4,9 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-#TODO: 第二篇增加欄位選項
-#TODO: 第二篇增加讀取全部選項
-
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -14,7 +11,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(
     basedir, 'test.db')
 db = SQLAlchemy(app)
 
-
+# 一
 class Person(db.Model):
     __tablename__ = 'person'
     id = db.Column(db.Integer, primary_key=True)
@@ -24,7 +21,7 @@ class Person(db.Model):
     def __init__(self, username):
         self.username = username
 
-
+# 多
 class Pet(db.Model):
     __tablename__ = 'pet'
     id = db.Column(db.Integer, primary_key=True)
@@ -44,7 +41,7 @@ def index():
     db.session.add(u)
     db.session.commit()
 
-    p = Pet('dog', u.id)
+    p = Pet('dog', u.id)
     db.session.add(p)
     db.session.commit()
 
