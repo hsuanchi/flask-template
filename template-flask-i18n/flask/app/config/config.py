@@ -11,8 +11,10 @@ def create_sqlite_uri(db_name):
 class BaseConfig:  # 基本配置
     SECRET_KEY = 'THIS IS MAX'
     PERMANENT_SESSION_LIFETIME = datetime.timedelta(days=14)
+
     BABEL_TRANSLATION_DIRECTORIES = 'translations'
-    SUPPORTED_LANGUAGES = {'zh': 'chinese', 'en': 'english'}
+    SUPPORTED_LANGUAGES = ['zh', 'en']
+    DEFAULT_LANGUAGE = 'zh'
 
 
 class DevelopmentConfig(BaseConfig):
