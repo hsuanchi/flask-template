@@ -28,7 +28,7 @@ def create_app(config_name):
 
     @app.route('/')
     def index():
-        return 'max'
+        return render_template('index.html')
 
     return app
 

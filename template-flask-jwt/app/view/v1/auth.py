@@ -1,4 +1,4 @@
-from flask import request
+from flask import request,jsonify
 from flask_restful import Api, Resource, reqparse
 
 from marshmallow import ValidationError
@@ -6,7 +6,7 @@ from marshmallow import ValidationError
 from flask_jwt_extended import (create_access_token,
                                 jwt_refresh_token_required,
                                 create_refresh_token, get_jwt_identity,
-                                fresh_jwt_required)
+                                fresh_jwt_required,set_refresh_cookies)
 
 from ...model import users
 from ... import db
@@ -41,14 +41,14 @@ class Login(Resource):
     def post(self):
         try:
             # 資料驗證
-            user_data = users_schema.load(request.json)
+            user_data = users_schema.load(request.form)
             name = user_data['name']
             password = user_data['password']
 
             # 登入
             query = users.User.get_user(name=name)
             if query != None and query.verify_password(password):
-                return create_jwt(name), 200
+                return create_jwt(name)
             else:
                 return {'msg': '帳密錯誤'}, 400
 
@@ -65,11 +65,16 @@ class JWT_refresh(Resource):
 
 
 def create_jwt(name):
-    response = {
+    refresh_token = create_refresh_token(identity=name)
+    access_token = create_access_token(identity=name)
+
+    # recommend frontend save access_token in memery
+    response = jsonify({
         'msg': 'ok',
-        'access_token': create_access_token(identity=name),
-        'refresh_token': create_refresh_token(identity=name)
-    }
+        'access_token': access_token,
+    })
+    # Set refresh_token in cookie & remember use httponly
+    set_refresh_cookies(response,refresh_token)
     return response
 
 

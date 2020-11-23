@@ -1,5 +1,6 @@
 import os
 from datetime import timedelta
+import datetime
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -12,6 +13,12 @@ class BaseConfig:  # 基本配置
     SECRET_KEY = os.environ.get('key')
     PERMANENT_SESSION_LIFETIME = timedelta(days=14)
 
+    JWT_ACCESS_TOKEN_EXPIRES = datetime.timedelta(minutes=1)
+    JWT_REFRESH_TOKEN_EXPIRES = datetime.timedelta(days=30)
+    JWT_TOKEN_LOCATION = ['cookies']
+
+    # Set True When Production Env
+    JWT_COOKIE_SECURE = False
 
 class DevelopmentConfig(BaseConfig):
     DEBUG = False
