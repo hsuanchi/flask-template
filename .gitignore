@@ -68,6 +68,7 @@ postgres-data/
 
 # Scrapy stuff:
 .scrapy
+.vscode
 
 # Sphinx documentation
 docs/_build/
