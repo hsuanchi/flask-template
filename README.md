@@ -8,6 +8,8 @@ Python 的 web 框架很多，推薦選擇 Flask 開始入門，因為 Flask 是
 
 也因為 Flask 的彈性度很高，所以製作了一份 Flask 學習路線圖教學，從基礎的環境建置教學、到學習 ORM 資料庫操作、以及驗證和部署，是一份學習 Flask 的入門地圖，讓大家可以輕鬆學習 Flask，而本篇內容會持續更新，歡迎底下留言交流！
 
+<img src="https://github.com/hsuanchi/flask-template/blob/master/img/flask-developer-roadmap.png" width="800px" height="auto">
+
 # 一. Flask 入門篇
 
 當初入門學習 Flask 時忽略的幾個重點，此篇從 Flask 設計理念、Flask 運行的三種方法、到運行後終端機顯示的小細節，建議不管是 Flask 初心者或老司機都可以閱讀一下，說不定會有意外的發現。
