@@ -12,7 +12,7 @@ Python 的 web 框架很多，推薦選擇 Flask 開始入門，因為 Flask 是
 
 # 一. Flask 入門篇
 
-當初入門學習 Flask 時忽略的幾個重點，此篇從 Flask 設計理念、Flask 運行的三種方法、到運行後終端機顯示的小細節，建議不管是 Flask 初心者或老司機都可以閱讀一下，說不定會有意外的發現。
+介紹當初入門學習 Flask 時忽略的幾個重點，此篇從 Flask 設計理念、Flask 運行的三種方法、到運行後終端機顯示的小細節，建議不管是 Flask 初心者或老司機都可以閱讀一下，說不定會有意外的發現。
 *  [【Hello word】實作一個簡單的 Flask 入門](https://www.maxlist.xyz/2020/04/30/flask-helloworld/) 
 
 *Nice To Have:* \
@@ -27,7 +27,7 @@ Python 的 web 框架很多，推薦選擇 Flask 開始入門，因為 Flask 是
 2. 可以使用原生 SQL下指令，也同時支援 ORM 框架來操作資料庫，可以隨時切換很方便。
 關於 Flask-SQLAlchemy 相關教學，可以參考：
 *  [Flask-SQLAlchemy 資料庫連線&設定入門 (一)](https://www.maxlist.xyz/2019/11/10/flask-sqlalchemy-setting/) 
-*  [Flask-SQLAlchemy 參數設置(進階)](https://www.maxlist.xyz/2020/10/06/flask-sqlalchemy-parameter/) 
+*  [Flask-SQLAlchemy 參數設置(進階)](https://www.maxlist.xyz/2020/10/06/flask-sqlalchemy-parameter/) 
 *  [Flask-SQLAlchemy 資料庫操作-ORM篇 (二)](https://www.maxlist.xyz/2019/10/30/flask-sqlalchemy/) 
 *  [Flask-SQLAlchemy -ORM 一對多關聯篇 (三)](https://www.maxlist.xyz/2019/11/24/flask-sqlalchemy-orm/) 
 *  [Flask-SQLAlchemy -ORM 多對多關聯篇 (四)](https://www.maxlist.xyz/2019/11/24/flask-sqlalchemy-orm2/) 
@@ -41,6 +41,7 @@ Python 的 web 框架很多，推薦選擇 Flask 開始入門，因為 Flask 是
 # 三. Flask 使用者驗證 Http authentication 篇
 
 當前端發請求 Http request 給後端時，該如何驗證使用者是否對此路徑 (route) 有權限能夠請求？實作了兩種方法，分別是使用 Session 的方式，和使用 JWT token 方式來驗證使用者請求！
+
 1.Session-based Authentication
 *  [Flask 實作 Cookie 操作和淺談](https://www.maxlist.xyz/2019/05/11/flask-cookie/) 
 *  [Flask 實作 Session 操作和淺談](https://www.maxlist.xyz/2019/06/29/flask-session/) 
@@ -65,16 +66,16 @@ Flask run 之後，發生了什麼事？Flask 自帶的 Web Server 只適合測�
 *  [實作 GCP 部署 Flask + Nginx + uWSGI](https://www.maxlist.xyz/2020/06/17/flask-nginx-uwsgi-on-gcp/) 
 # 五. Flask 遇上 Docker 篇
 每次部署 Flask Server 環境設定都好麻煩？Flask 遇上 Docker 系列會實作如何使用 Docker 部署 Flask，並且都有附上完整程式碼在 GitHub 上唷！
-*  [第一集：實作 Dockerfile + flask 教學 (附GitHub完整程式)](https://www.maxlist.xyz/2020/01/11/docker-flask/) 
+*  [第一集：實作 Dockerfile + flask 教學 (附GitHub完整程式)](https://www.maxlist.xyz/2020/01/11/docker-flask/) 
 *  [第二集：實作 Dockerfile + Nginx + SSL + Flask 教學 (附GitHub完整程式)](https://www.maxlist.xyz/2020/01/19/docker-nginx/) 
 *  [第三集：實作 Docker-compose (Flask+Nginx+PostgreSQL)](https://www.maxlist.xyz/2020/06/14/flask-docker-compose/) 
 # 六. Flask Cache 篇
-￼
+
 部署後，在網頁瀏覽時載入好慢？試試利用快取來優化吧，本篇實作 Server Side 和 Client Side 的 Cache 機制：
 *  [Flask 實作 Cache + Redis & Nginx Cache 配置](https://www.maxlist.xyz/2020/08/24/flask-cache/) 
 
 # 七. Flask Testing 測試篇
-￼
+
 部署後 Server 總是出問題？快來試試單元測試吧！本篇除了實作 Flask 單元測試和程式的覆蓋率外，也介紹了單元測試的 F.I.R.S.T 原則，以及考量 Independent 時，會遵循 3A rule。
 *  [實作 Flask 單元測試 Unit Testing](https://www.maxlist.xyz/2020/08/17/flask-unittest/) 
 # 八. Flask CI / CD 篇
@@ -89,7 +90,7 @@ Flask run 之後，發生了什麼事？Flask 自帶的 Web Server 只適合測�
 實作 Flask-Babel 來建置 i18n 的多國語系網站，並且有附 GitHub 完整的範例，歡迎大家 clone 使用：
 *  [【Flask教學】實作 Flask i18n 多國語系](https://www.maxlist.xyz/2020/10/24/flask-i18n/) 
 # 十一. 版本控制
-￼
+
 雖然版本控制和 Flask 沒有特別關聯，但隨著專案架構越來越大、或需要與同事協作時、或是在建置 CI / CD 的 Repo 存放，版本控制都是很重要的一環，建議這塊技能可以越早點越好。
 *  [Git 入門四步驟 – init & add & commit & push](https://www.maxlist.xyz/2020/05/10/git-tutorial/) 
 *  [Git 的平行時空 – 分支合併: merge 與 rebase 差異](https://www.maxlist.xyz/2020/05/02/git-merge-rebase/) 
