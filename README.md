@@ -66,7 +66,7 @@ Flask run 之後，發生了什麼事？Flask 自帶的 Web Server 只適合測�
 *  [實作 GCP 部署 Flask + Nginx + uWSGI](https://www.maxlist.xyz/2020/06/17/flask-nginx-uwsgi-on-gcp/) 
 # 五. Flask 遇上 Docker 篇
 每次部署 Flask Server 環境設定都好麻煩？Flask 遇上 Docker 系列會實作如何使用 Docker 部署 Flask，並且都有附上完整程式碼在 GitHub 上唷！
-*  [第一集：實作 Dockerfile + flask 教學 (附GitHub完整程式)](https://www.maxlist.xyz/2020/01/11/docker-flask/) 
+*  [第一集：實作 Dockerfile + lask 教學 (附GitHub完整程式)](https://www.maxlist.xyz/2020/01/11/docker-flask/) 
 *  [第二集：實作 Dockerfile + Nginx + SSL + Flask 教學 (附GitHub完整程式)](https://www.maxlist.xyz/2020/01/19/docker-nginx/) 
 *  [第三集：實作 Docker-compose (Flask+Nginx+PostgreSQL)](https://www.maxlist.xyz/2020/06/14/flask-docker-compose/) 
 # 六. Flask Cache 篇
